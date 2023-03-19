@@ -33,3 +33,9 @@
     width: 20rem;
     max-width: 100%;
   }
+  .error {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: red;
+    margin-top: 0.2rem;
+}
