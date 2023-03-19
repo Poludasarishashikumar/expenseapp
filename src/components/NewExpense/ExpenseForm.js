@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-
+import swal from 'sweetalert2';
 import './ExpenseForm.css';
-import ExpenseCurrency from '../Expenses/ExpenseCurrency';
+
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
@@ -10,6 +10,47 @@ const ExpenseForm = (props) => {
   const [enteredName, setEnteredName] = useState('');
   const [enteredCurrency, setEnteredCurrency] = useState('');
   
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  // swal({
+  //   title: "Are you sure?",
+  //   text: "Once deleted, you will not be able to recover this imaginary file!",
+  //   icon: "warning",
+  //   buttons: true,
+  //   dangerMode: true,
+  // })
+  // .then((willDelete) => {
+  //   if (willDelete) {
+  //     swal("Poof! Your imaginary file has been deleted!", {
+  //       icon: "success",
+  //     });
+  //   } else {
+  //     swal("Your imaginary file is safe!");
+  //   }
+  // });
+
+
+
+
+
+
+
+
+
+
+
+
 
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: '',
@@ -59,7 +100,7 @@ const ExpenseForm = (props) => {
   // };
 
   const currencyChangeHandler = (event) => {
-    setEnteredCurrency(event);
+    setEnteredCurrency(event.target.value.toString());
   };
 
 
@@ -100,12 +141,6 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className='new-expense__control'>
-          <label>Currency</label>
-          <ExpenseCurrency
-          
-          value={enteredCurrency}
-          onChangeCurrency={currencyChangeHandler}/>
-        <div className='new-expense__control'>
           <label>Amount</label>
           <input
             type='number'
@@ -120,7 +155,7 @@ const ExpenseForm = (props) => {
           <input
             type='date'
             min='2012-01-01'
-            max='2022-12-31'
+            max={new Date().getFullYear().toString()+'-'+(new Date().getMonth()+1).toString().padStart(2,'0')+'-'+new Date().getDate().toString().padStart(2,'0')}
             value={enteredDate}
             onChange={dateChangeHandler}
           />
@@ -133,6 +168,9 @@ const ExpenseForm = (props) => {
             onChange={nameChangeHandler}
           />
         </div>
+
+
+
         {/* <div className='new-expense__control'>
           <label>Currency</label>
           <ExpenseCurrency
@@ -141,24 +179,36 @@ const ExpenseForm = (props) => {
           onChangeCurrency={currencyChangeHandler}/> */}
 
 
+
           
-          {/* <input
-            
-          //   <select value={enteredCurrency} onChange={dropdownChangeHandler}>
-          //   <option value='USD'>USD</option>
-          //   <option value='INR'>INR</option>
-          //   <option value='EUR'>EUR</option>
-          //   <option value='JPY'>JPY</option>
-          // </select>
+        {/* <div className='new-expense__control'>
+          <label>Currency</label>
+          <ExpenseCurrency
+          
           value={enteredCurrency}
-              onChange={currencyChangeHandler}
+        onChangeCurrency={currencyChangeHandler}/> */}
 
-          /> */}
+
+          
+<div className='new-expense__control'>
+          <label>Currency</label>
+            
+              <select  value={enteredCurrency} onChange={currencyChangeHandler}>
+               <option value='$'>USD</option>
+               <option value='@'>INR</option>
+             <option value='*'>EUR</option>
+             <option value='#'>JPY</option>
+           
+          
+
+             </select>
+             </div>
+          
 
 
 
           
-        </div>
+        
       </div>
       <div className='new-expense__actions'>
         <button type='submit'>Add Expense</button>
