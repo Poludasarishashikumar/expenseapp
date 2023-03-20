@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './Currencyfilter.css';
+import './CurrencyFilter.css';
 
-const Currencyfilter = (props) => {
+const CurrencyFilter = (props) => {
   const dropdownChangeHandler = (event) => {
-    props.onChangeFilter(event.target.value);
+    props.onChangeFilter(event.target.value.toString());
   };
 
   return (
@@ -12,17 +12,17 @@ const Currencyfilter = (props) => {
       <div className='expenses-currencyfilter__control'>
         <label>Filter by Currency</label>
         <select value={props.selected} onChange={dropdownChangeHandler}>
-          <option value='$'>USD</option>
-          <option value='₹'>INR</option>
-          <option value='€'>EUR</option>
-          <option value='£'>GBP</option>
+          <option value='$'>$</option>
+          <option value='₹'>₹</option>
+          <option value='€'>€</option>
+          <option value='£'>£</option>
         </select>
       </div>
     </div>
   );
 };
 
-export default Currencyfilter;
+export default CurrencyFilter;
 
 
 

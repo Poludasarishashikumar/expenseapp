@@ -45,6 +45,17 @@ const App = () => {
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
+      <div>
+          <p>
+            Total Expense:{' '}
+            <span className="text-success">
+              Rs.{' '}
+              {expenses.reduce((accumulator, currentValue) => {
+                return (accumulator += parseInt(currentValue.amount))
+              }, 0)}
+            </span>
+          </p>
+        </div>
     </div>
   );
 };

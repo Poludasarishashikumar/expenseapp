@@ -4,12 +4,12 @@ import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
 import './Expenses.css';
-import Currencyfilter from './Currencyfilter';
+import CurrencyFilter from './CurrencyFilter';
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('2020');
-  // const [filteredCurrency, setFilteredCurrency] = useState('USD');
-
+  const [filteredCurrency, setFilteredCurrency] = useState('$');
+ console.log(filteredCurrency);
   // const filterCurrencyHandler = (selectedCurrency) => {
   //   setFilteredCurrency(selectedCurrency);
   // };
@@ -33,12 +33,48 @@ const Expenses = (props) => {
   //   ));
   // }
 
+
+
+
+
+  const filterCurrencyHandler = (selectedCurrency) => {
+    setFilteredCurrency(selectedCurrency.toString());
+  };
+
+  // const filteredExpenses = props.items.filter((expense) => {
+  //   return expense.date.getFullYear().toString() === filteredYear;
+  // });
+
+  // let expensesContent = <p>No expenses found.</p>;
+
+  // if (filteredExpenses.length > 0) {
+  //   expensesContent = filteredExpenses.map((expense) => (
+  //     <ExpenseItem
+  //       key={expense.id}
+  //       title={expense.title}
+  //       amount={expense.amount}
+  //       date={expense.date}
+  //       name={expense.name}
+  //       currency={expense.currency}
+  //     />
+  //   ));
+  // }
+
+
+
+
+
+
+
+
+
+
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
   const filteredExpenses = props.items.filter((expense) => {
-    return expense.date.getFullYear().toString() === filteredYear;
+    return ((expense.date.getFullYear().toString() === filteredYear) && (expense.currency===filteredCurrency) );
   });
 
   let expensesContent = <p>No expenses found.</p>;
@@ -63,14 +99,20 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {/* <ExpenseCurrencyfilter
-        selected={filteredCurrency}
-        onChangeFilter={filterCurrencyHandler}
-        /> */}
+        <CurrencyFilter
+          selected={filteredCurrency}
+          onChangeFilter={filterCurrencyHandler}
+          />
         {expensesContent}
+        {/* <CurrencyFilter
+        // selected={filteredCurrency}
+        // onChangeFilter={filterCurrencyHandler}
+        /> */}
+        
+       
+      
       </Card>
     </div>
   );
 };
-
 export default Expenses;
