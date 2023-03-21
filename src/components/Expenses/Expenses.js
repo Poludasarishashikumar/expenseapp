@@ -5,11 +5,26 @@ import Card from '../UI/Card';
 import ExpensesFilter from './ExpensesFilter';
 import './Expenses.css';
 import CurrencyFilter from './CurrencyFilter';
+import CurrencyFilter2 from './CurrencyFilter2';
 
+// const currencies = [
+//   {
+//     name: "USD",
+//     symbol: "$",
+//     conversionRate: 1,
+//   },
+//   {
+//     name: "EUR",
+//     symbol: "€",
+//     conversionRate: 1.01,
+//   },
+  
+// ];
 const Expenses = (props) => {
+
   const [filteredYear, setFilteredYear] = useState('2020');
   const [filteredCurrency, setFilteredCurrency] = useState('$');
- console.log(filteredCurrency);
+//  console.log(currencies.conversionRate);
   // const filterCurrencyHandler = (selectedCurrency) => {
   //   setFilteredCurrency(selectedCurrency);
   // };
@@ -108,6 +123,7 @@ const Expenses = (props) => {
         // selected={filteredCurrency}
         // onChangeFilter={filterCurrencyHandler}
         /> */}
+        <CurrencyFilter2/>
         
        
       
