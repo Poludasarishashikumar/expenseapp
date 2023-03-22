@@ -1,8 +1,16 @@
 import React from 'react';
 
 import './CurrencyFilter.css';
-
+const currencies = [
+  { code: "USD", value: "USD"},
+  { code: "INR", value: "INR" },
+  { code: "EUR", value: "EUR" },
+  { code: "GBP", value: "GBP" },
+  
+];
 const CurrencyFilter = (props) => {
+  // const selectedCurrencyRate = currencies.find((currency) => currency.code === filteredCurrency).rate;
+  // const total = amount * selectedCurrencyRate;
   const dropdownChangeHandler = (event) => {
     props.onChangeFilter(event.target.value.toString());
   };
@@ -11,46 +19,18 @@ const CurrencyFilter = (props) => {
     <div className='expenses-currencyfilter'>
       <div className='expenses-currencyfilter__control'>
         <label>Filter by Currency</label>
-        <select value={props.selected} onChange={dropdownChangeHandler}>
-          <option value='$'>$</option>
-          <option value='₹'>₹</option>
-          <option value='€'>€</option>
-          <option value='£'>£</option>
+        <select value={props.selected} onChange={dropdownChangeHandler} >
+        {/* <option value=''>None</option>  */}
+        {currencies.map((option)=>(
+            <option key={option.code} value={option.value}  >
+              {option.code}
+            </option>
+        ))}
         </select>
       </div>
+      {/* <p>Total: {total}</p> */}
     </div>
   );
 };
 
 export default CurrencyFilter;
-
-
-
-
-
-
-// import React from 'react';
-
-// import './ExpensesFilter.css';
-
-// const ExpensesFilter = (props) => {
-//   const dropdownChangeHandler = (event) => {
-//     props.onChangeFilter(event.target.value);
-//   };
-
-//   return (
-//     <div className='expenses-filter'>
-//       <div className='expenses-filter__control'>
-//         <label>Filter by year</label>
-//         <select value={props.selected} onChange={dropdownChangeHandler}>
-//         <option value='$'>USD</option>
-//           <option value='₹'>INR</option>
-//           <option value='€'>EUR</option>
-//           <option value='£'>GBP</option>
-//         </select>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ExpensesFilter;

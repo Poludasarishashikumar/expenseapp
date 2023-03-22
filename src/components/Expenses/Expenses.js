@@ -1,86 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 
 import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
-import ExpensesFilter from './ExpensesFilter';
+import ExpensesFilter2 from './ExpensesFilter2';
 import './Expenses.css';
 import CurrencyFilter from './CurrencyFilter';
 import CurrencyFilter2 from './CurrencyFilter2';
 
-// const currencies = [
-//   {
-//     name: "USD",
-//     symbol: "$",
-//     conversionRate: 1,
-//   },
-//   {
-//     name: "EUR",
-//     symbol: "€",
-//     conversionRate: 1.01,
-//   },
-  
-// ];
+
+
 const Expenses = (props) => {
-
   const [filteredYear, setFilteredYear] = useState('2020');
-  const [filteredCurrency, setFilteredCurrency] = useState('$');
-//  console.log(currencies.conversionRate);
-  // const filterCurrencyHandler = (selectedCurrency) => {
-  //   setFilteredCurrency(selectedCurrency);
-  // };
-
-  // const filteredExpense = props.items.filter((expense) => {
-  //   return expense.currency.toString() === filteredCurrency;
-  // });
-
-  // let expensesConten = <p>No expenses found.</p>;
-
-  // if (filteredExpense.length > 0) {
-  //   expensesConten = filteredExpense.map((expense) => (
-  //     <ExpenseItem
-  //       key={expense.id}
-  //       title={expense.title}
-  //       amount={expense.amount}
-  //       date={expense.date}
-  //       name={expense.name}
-  //       currency={expense.currency}
-  //     />
-  //   ));
-  // }
-
-
-
-
+  const [filteredCurrency, setFilteredCurrency] = useState('USD');
+  
 
   const filterCurrencyHandler = (selectedCurrency) => {
     setFilteredCurrency(selectedCurrency.toString());
+   
+    
   };
-
-  // const filteredExpenses = props.items.filter((expense) => {
-  //   return expense.date.getFullYear().toString() === filteredYear;
-  // });
-
-  // let expensesContent = <p>No expenses found.</p>;
-
-  // if (filteredExpenses.length > 0) {
-  //   expensesContent = filteredExpenses.map((expense) => (
-  //     <ExpenseItem
-  //       key={expense.id}
-  //       title={expense.title}
-  //       amount={expense.amount}
-  //       date={expense.date}
-  //       name={expense.name}
-  //       currency={expense.currency}
-  //     />
-  //   ));
-  // }
-
-
-
-
-
-
-
 
 
 
@@ -89,13 +27,21 @@ const Expenses = (props) => {
   };
 
   const filteredExpenses = props.items.filter((expense) => {
-    return ((expense.date.getFullYear().toString() === filteredYear) && (expense.currency===filteredCurrency) );
+    
+    if(filteredYear==='')
+    {
+      return ((expense.date.getFullYear().toString())  ); 
+    }
+    else{
+    return ((expense.date.getFullYear().toString() === filteredYear)  );
+    }
   });
-
+  
   let expensesContent = <p>No expenses found.</p>;
-
   if (filteredExpenses.length > 0) {
+    
     expensesContent = filteredExpenses.map((expense) => (
+      
       <ExpenseItem
         key={expense.id}
         title={expense.title}
@@ -103,6 +49,8 @@ const Expenses = (props) => {
         date={expense.date}
         name={expense.name}
         currency={expense.currency}
+       kate={filteredCurrency}
+       
       />
     ));
   }
@@ -110,20 +58,20 @@ const Expenses = (props) => {
   return (
     <div>
       <Card className='expenses'>
-        <ExpensesFilter
+        <ExpensesFilter2
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
         <CurrencyFilter
           selected={filteredCurrency}
           onChangeFilter={filterCurrencyHandler}
+          
           />
         {expensesContent}
         {/* <CurrencyFilter
         // selected={filteredCurrency}
         // onChangeFilter={filterCurrencyHandler}
         /> */}
-        <CurrencyFilter2/>
         
        
       
